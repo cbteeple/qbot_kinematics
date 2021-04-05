@@ -249,7 +249,7 @@ class QBotPlanning:
             workspace['values'].append(hull_pts.tolist())
             workspace['q3'].append(q3_val)
 
-        with open('qbot_workspace.pkl', 'wb') as f:
+        with open(self.robot_params['workspace_file'], 'wb') as f:
             pickle.dump(workspace,f)
 
         return workspace
@@ -258,8 +258,8 @@ class QBotPlanning:
     def get_workspace(self, q3 = None, discretize=[50,50,5]):
         workspace = None
 
-        if os.path.exists('qbot_workspace.pkl'):
-            with open('qbot_workspace.pkl', 'rb') as f:
+        if os.path.exists(self.robot_params['workspace_file']):
+            with open(self.robot_params['workspace_file'], 'rb') as f:
                 workspace = pickle.load(f)
 
         if workspace is not None:

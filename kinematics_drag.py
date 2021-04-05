@@ -10,8 +10,7 @@ import os
 import sys
 import yaml
 
-from qkin import QBotPlanning, QBotGcode
-from gcode_serial import GCodeSerial
+from qkin import QBotPlanning, QBotGcode, GCodeSerial
 
 import matplotlib.collections as mcollections
 class UpdatablePatchCollection(mcollections.PatchCollection):
@@ -26,7 +25,7 @@ class UpdatablePatchCollection(mcollections.PatchCollection):
 
 
 # Set up robot dimensions
-with open('robot_params.yaml', 'r') as f:
+with open('config/robot_params.yaml', 'r') as f:
     robot_params = yaml.safe_load(f)
 
 robot = QBotPlanning(robot_params)
