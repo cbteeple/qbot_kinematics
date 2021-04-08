@@ -31,7 +31,7 @@ with open('config/robot_params.yaml', 'r') as f:
 robot = QBotPlanning(robot_params)
 
 # Serial port setup
-serial_port = '/dev/ttyACM0'
+serial_port = 'COM4' #'/dev/ttyACM0'
 serial_baudrate = 115200
 
 interp = 'linear'
@@ -105,7 +105,8 @@ def update_sliders(val):
 
     if in_main_axis and isinstance(val, dict):
         slider_curr = sliders[val['slider']]
-        slider_curr.set_val(val['value'])
+        if (val['value'] is not None) and not np.isnan(val['value']):
+            slider_curr.set_val(val['value'])
         return
     
     elif not in_main_axis:

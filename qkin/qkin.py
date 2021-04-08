@@ -210,7 +210,9 @@ class QBotPlanning:
         all_conditions = np.vstack((q1_abs_feasible, q2_abs_feasible, q3_abs_feasible, q1_rel_feasible, q2_rel_feasible, q3_rel_feasible)).T
         all_feasible = np.all(all_conditions, axis=1)
 
-        return all_feasible
+        all_numbers = np.all(np.logical_not(np.isnan(q_vec)))
+
+        return all_feasible & all_numbers
 
 
     def calculate_workspace(self, discretize=[50,50,5]):
